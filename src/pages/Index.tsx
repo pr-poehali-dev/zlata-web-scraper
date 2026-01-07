@@ -6,14 +6,18 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+  
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -24,7 +28,19 @@ const Index = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    
+    toast({
+      title: "Заявка отправлена!",
+      description: "Мы свяжемся с вами в течение 2 часов.",
+    });
+    
+    setFormData({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      message: ""
+    });
   };
 
   const benefits = [
