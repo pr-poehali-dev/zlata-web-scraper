@@ -8,6 +8,12 @@ import Icon from "@/components/ui/icon";
 import { useState } from "react";
 
 const Index = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -138,14 +144,14 @@ const Index = () => {
             <span className="text-xl font-bold text-secondary">ExpertConsult</span>
           </div>
           <nav className="hidden md:flex gap-8">
-            <a href="#benefits" className="text-sm font-medium hover:text-primary transition-colors">Преимущества</a>
-            <a href="#portfolio" className="text-sm font-medium hover:text-primary transition-colors">Портфолио</a>
-            <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Тарифы</a>
-            <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
-            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
+            <button onClick={() => scrollToSection('benefits')} className="text-sm font-medium hover:text-primary transition-colors">Преимущества</button>
+            <button onClick={() => scrollToSection('portfolio')} className="text-sm font-medium hover:text-primary transition-colors">Портфолио</button>
+            <button onClick={() => scrollToSection('pricing')} className="text-sm font-medium hover:text-primary transition-colors">Тарифы</button>
+            <button onClick={() => scrollToSection('faq')} className="text-sm font-medium hover:text-primary transition-colors">FAQ</button>
+            <button onClick={() => scrollToSection('contact')} className="text-sm font-medium hover:text-primary transition-colors">Контакты</button>
           </nav>
-          <Button asChild>
-            <a href="#contact">Записаться</a>
+          <Button onClick={() => scrollToSection('contact')}>
+            Записаться
           </Button>
         </div>
       </header>
@@ -161,11 +167,11 @@ const Index = () => {
               Стратегическое консультирование для роста эффективности, прибыли и конкурентоспособности
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" variant="secondary" asChild className="text-lg">
-                <a href="#contact">Получить консультацию</a>
+              <Button size="lg" variant="secondary" onClick={() => scrollToSection('contact')} className="text-lg">
+                Получить консультацию
               </Button>
-              <Button size="lg" variant="outline" asChild className="text-lg bg-transparent border-white text-white hover:bg-white hover:text-secondary">
-                <a href="#portfolio">Наши проекты</a>
+              <Button size="lg" variant="outline" onClick={() => scrollToSection('portfolio')} className="text-lg bg-transparent border-white text-white hover:bg-white hover:text-secondary">
+                Наши проекты
               </Button>
             </div>
           </div>
